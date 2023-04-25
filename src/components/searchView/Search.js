@@ -10,8 +10,10 @@ import moment from 'moment';
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.inputSearchClickHandlerOrigin = this.inputSearchClickHandlerOrigin.bind(this);
-    this.inputSearchClickHandlerDestination = this.inputSearchClickHandlerDestination.bind(this);
+    this.inputSearchClickHandlerOrigin =
+      this.inputSearchClickHandlerOrigin.bind(this);
+    this.inputSearchClickHandlerDestination =
+      this.inputSearchClickHandlerDestination.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
 
     this.state = {
@@ -26,6 +28,7 @@ class Search extends Component {
         min: 500,
         max: 5000,
       },
+      service: '',
     };
   }
 
@@ -138,6 +141,22 @@ class Search extends Component {
               </div>
             </div>
           )}
+          <br />
+          <div>
+            <label className="block">Service</label>
+            <div className="service">
+              <input
+                placeholder="Best Price For Trip Duration"
+                type="text"
+                value={this.state.service}
+                onChange={(e) =>
+                  this.setState({
+                    service: e.target.value,
+                  })
+                }
+              />
+            </div>
+          </div>
           <div className="passengers">
             <span className="passenger__count">
               {this.state.passengers} passenger

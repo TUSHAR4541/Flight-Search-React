@@ -23,6 +23,30 @@ class FlightsResult extends Component {
 
   checkFlightAvailability(flight) {
     let result = this.state.searchData;
+    console.log(
+      `https://javascript.info/promise-api/promotions/priceoffers/flights/${
+        result.originCity
+      }/${result.destinationCity}?departureDate=${moment(
+        result.startDate
+      ).format('YYYY-MM-DD')}&returnDate=${moment(result.endDate).format(
+        'YYYY-MM-DD'
+      )}&service=${result.service}`
+    );
+    // const apiResults = fetch(
+    //   `https://javascript.info/promise-api/promotions/priceoffers/flights/${
+    //     result.originCity
+    //   }/${result.destinationCity}?departureDate=${moment(
+    //     result.startDate
+    //   ).format('YYYY-MM-DD')}&returnDate=${moment(result.endDate).format(
+    //     'YYYY-MM-DD'
+    //   )}&service=${result.service}`,
+    //   {
+    //     method: 'GET',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //   }
+    // ).then((res) => this.setState({ flights: res.data }));
 
     if (
       result.originCity === flight.from_code &&
@@ -54,11 +78,11 @@ class FlightsResult extends Component {
   render() {
     var flightsAvailable;
     if (this.state.searchData === '') {
-      flightsAvailable = this.state.flights.map((flight) => {
+      flightsAvailable = this.state.flights?.map((flight) => {
         return <FlightDetails FlightData={flight}></FlightDetails>;
       });
     } else {
-      flightsAvailable = this.state.flights.map((flight) => {
+      flightsAvailable = this.state.flights?.map((flight) => {
         return (
           <FlightDetails
             FlightData={this.checkFlightAvailability(flight)}
